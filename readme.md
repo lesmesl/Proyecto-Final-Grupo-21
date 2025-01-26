@@ -15,7 +15,7 @@ Las reuniones de trabajo establecidas son:
 
 ## Enlaces al Repositorio del Proyecto
 * [Respositorio](https://github.com/lesmesl/Proyecto-Final-Grupo-21)
-* [WIKI](https://github.com/lesmesl/MISW-4203-Backend-Cloud/wiki) 
+* [WIKI](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki) 
 * [Trabajo del equipo semanal](https://github.com/users/lesmesl/projects/3/views/1)
 
 ## Enlaces Jira
