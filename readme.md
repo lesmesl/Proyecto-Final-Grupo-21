@@ -13,8 +13,6 @@ Las reuniones de trabajo establecidas son:
 * Jueves: 8:00 p.m. Reunión de Seguimiento para cierre
 * Sábado o Domingo: 10:00 a.m. Reunión Opcional para cierre
 
-El flujo de trabajo para el desarrollo se encuentra en [Flujos de Trabajo](Flujos-de-trabajo)
-
 ## Enlaces al Repositorio del Proyecto
 * [Respositorio](https://github.com/lesmesl/Proyecto-Final-Grupo-21)
 * [WIKI](https://github.com/lesmesl/MISW-4203-Backend-Cloud/wiki) 
