@@ -31,3 +31,11 @@ Las reuniones de trabajo establecidas son:
 * **Semana 6**
 * **Semana 7**
 * **Semana 8**
+
+## Levantar el proyecto
+Para levantar el proyecto se debe clonar el repositorio y ejecutar el siguiente comando en la carpeta raíz del proyecto:
+
+```bash
+uvicorn app.main:app --reload
+docker-compose up -d
+```

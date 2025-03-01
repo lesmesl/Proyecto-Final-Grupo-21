@@ -1,0 +1,7 @@
+fastapi[standard]
+boto3
+sqlalchemy
+pika
+pydantic-settings
+pydantic
+psycopg2-binary
