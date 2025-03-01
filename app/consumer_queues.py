@@ -19,15 +19,13 @@ def activar_consumer():
 def activar_consumer_sqs():
     import boto3
     import json
+    import time
     cliente = boto3.client('sqs', region_name=settings.AWS_REGION)
     while True:
         response = cliente.receive_message(
             QueueUrl=settings.SQS_URL,
-            AttributeNames=['All'],
             MaxNumberOfMessages=1,
-            MessageAttributeNames=['All'],
-            VisibilityTimeout=0,
-            WaitTimeSeconds=0
+            WaitTimeSeconds=10  # Espera hasta 10 segundos si no hay mensajes
         )
         if 'Messages' in response:
             for message in response['Messages']:
@@ -35,9 +33,26 @@ def activar_consumer_sqs():
                 # Procesar el mensaje
                 print(f"Mensaje recibido: {mensaje}")
                 
-                # Procesar el mensaje
+                # Simular procesamiento
                 time.sleep(5)
                 print(f"Mensaje procesado: {mensaje}")
+
+                # Guardar registro en la base de datos
+                byte_to_dict = json.loads(mensaje)
+                estado = "PROCESADO"
+                db_session = SessionLocal()  # Crear una nueva sesión
+                try:
+                    db_session.query(RegistroCarga).filter(RegistroCarga.id == byte_to_dict['id']).update(
+                        {"estado": estado, "fecha_de_consumo": get_fecha_actual()}
+                    )
+                    db_session.commit()  # Confirmar los cambios
+                    print(f"Registro actualizado: {byte_to_dict['id']}")
+                except Exception as e:
+                    db_session.rollback()  # Revertir en caso de error
+                    print(f"Error al actualizar el registro: {e}")
+                    # Puedes optar por continuar en lugar de relanzar la excepción
+                finally:
+                    db_session.close()  # Cerrar la sesión
 
                 # Eliminar el mensaje de la cola
                 cliente.delete_message(
@@ -45,8 +60,9 @@ def activar_consumer_sqs():
                     ReceiptHandle=message['ReceiptHandle']
                 )
         else:
-            print("No hay mensajes en la cola")
-            break
+            print("No hay mensajes en la cola, esperando...")
+            time.sleep(5)  # Esperar 5 segundos antes de volver a hacer polling
+
 
 def activar_consumer_rabbitmq():
     import pika
@@ -95,4 +111,3 @@ def activar_consumer_rabbitmq():
         canal.stop_consuming()
         conexion.close()
         raise e
-    
