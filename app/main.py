@@ -45,6 +45,15 @@ async def enviar_carga(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+@app.on_event("startup")
+async def startup_event():
+    # Iniciar el consumer automáticamente cuando arranca la aplicación
+    if not app.state.consumer_thread or not app.state.consumer_thread.is_alive():
+        app.state.consumer_thread = threading.Thread(target=activar_consumer, daemon=True)
+        app.state.consumer_thread.start()
+        print("Consumer activado automáticamente durante el inicio de la aplicación")
+
 @app.get("/registros")
 async def obtener_registros(db: Session = Depends(get_db)):
     registros = db.query(RegistroCarga).all()
