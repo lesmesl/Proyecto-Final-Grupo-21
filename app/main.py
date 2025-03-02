@@ -56,7 +56,7 @@ async def startup_event():
 
 @app.get("/registros")
 async def obtener_registros(db: Session = Depends(get_db)):
-    registros = db.query(RegistroCarga).all()
+    registros = db.query(RegistroCarga).order_by(RegistroCarga.id.asc()).all()
     return {
         "numero_registros": len(registros),
         "registros": registros
