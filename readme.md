@@ -29,7 +29,7 @@ Las reuniones de trabajo establecidas son:
 * [**Semana 4**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-4)
 * [**Semana 5**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-5)
 * [**Semana 6**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-6)
-* **Semana 7**
+* [**Semana 7**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-7)
 * **Semana 8**
 
 ## Levantar el proyecto
