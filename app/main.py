@@ -1,12 +1,13 @@
 import json
 import threading
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 from app.db import get_db, engine, Base
 from app.models import RegistroCarga
 from app.producer_queues import enviar_mensaje_cola
 from app.consumer_queues import activar_consumer
 from app.utils import get_fecha_actual
+from pydantic import BaseModel
 
 # Crear las tablas en la base de datos
 Base.metadata.create_all(bind=engine)
@@ -83,3 +84,28 @@ async def estado_consumer():
     if app.state.consumer_thread and app.state.consumer_thread.is_alive():
         return {"estado": "activo", "hilos_activos": threading.active_count()}
     return {"estado": "inactivo", "hilos_activos": threading.active_count()}
+
+class HealthCheck(BaseModel):
+    """Response model to validate and return when performing a health check."""
+    status: str = "OK"
+
+
+@app.get(
+    "/",
+    tags=["healthcheck"],
+    summary="Perform a Health Check",
+    response_description="Return HTTP Status Code 200 (OK)",
+    status_code=status.HTTP_200_OK,
+    response_model=HealthCheck,
+)
+def get_health() -> HealthCheck:
+    """
+    ## Perform a Health Check
+    Endpoint to perform a healthcheck on. This endpoint can primarily be used Docker
+    to ensure a robust container orchestration and management is in place. Other
+    services which rely on proper functioning of the API service will not deploy if this
+    endpoint returns any other HTTP status code except 200 (OK).
+    Returns:
+        HealthCheck: Returns a JSON response with the health status
+    """
+    return HealthCheck(status="OK")
