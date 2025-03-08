@@ -1,3 +1,109 @@
+# Contexto del experimento 1
+
+
+
+Titulo del experimento​
+
+Evaluación de latencia y desempeño registro de cambio de inventario en tiempo real​
+
+Propósito del experimento​
+
+Evaluar el impacto de la arquitectura actual sobre la latencia y el desempeño del microservicio InventoryCalculation, desplegado en AWS ECS (Elastic Container Service), con una base de datos RDS PostgreSQL y el uso de una cola de mensajería SQS para procesamiento de eventos. Se probarán las siguientes tácticas de arquitectura:​
+
+Táctica de Procesamiento Asíncrono: Evaluación del impacto del uso de SQS en la reducción del tiempo de respuesta en peticiones concurrentes​
+
+Resultados esperados​
+
+•El tiempo de transmisión del mensaje entre microservicios debe ser menor a 2 s en el 95% de los casos.​
+
+•Determinar la latencia promedio del microservicio Supply bajo diferentes niveles de carga.​
+
+•Evaluar el impacto del autoescalado en ECS sobre el tiempo de respuesta del microservicio.​
+
+•Identificar posibles cuellos de botella en la comunicación entre ECS, RDS PostgreSQL y SQS.​
+
+•Establecer los tiempos de procesamiento asíncrono a través de la cola de mensajes SQS y su impacto en el desempeño general.​
+
+Recursos requeridos​
+
+Software​
+
+•AWS ECS para el despliegue del microservicio Supply.​
+
+•AWS RDS PostgreSQL como base de datos transaccional.​
+
+•AWS SQS para la cola de mensajes.​
+
+•Python con boto3 para pruebas de interacción con AWS.​
+
+Infraestructura en Cloud​
+
+•ECS configurado con autoescalado.​
+
+•Instancia RDS PostgreSQL con configuraciones optimizadas para carga de lectura/escritura.​
+
+•AWS SQS​
+
+Elementos de arquitectura involucrados​
+
+•Microservicio de InventoryCalculation  en ECS: Recibe la solicitud de registro, almacena la información en PostgreSQL y envía un mensaje a través de SQS.​
+
+•RDS PostgreSQL: Base de datos transaccional.​
+
+•SQS: Procesamiento asíncrono de mensajes​
+
+Esfuerzo estimado​
+
+•Horas hombre estimadas: 10 horas distribuidas en 4 personas.​
+
+
+ 
+Hipótesis de diseño​
+
+Punto de sensibilidad​
+
+Evaluar la latencia en la comunicación asíncrona mediante Amazon SQS.​
+
+Identificar posibles cuellos de botella en la transmisión de mensajes y procesamiento de eventos en el microservicio InventoryCalculation.​
+
+Analizar la eficiencia de la comunicación entre ECS y SQS, y su impacto en la latencia de procesamiento.​
+
+Determinar el impacto en la base de datos PostgreSQL alojada en Amazon RDS al registrar eventos en tiempo real.​
+
+Historia de arquitectura asociada​
+
+ARQ-002 : Registro de cambios de inventario en tiempo real​
+
+Nivel de incertidumbre​
+
+​
+Alto – No hay pruebas previas sobre la latencia de SQS en este entorno específico ni sobre el impacto de la concurrencia en RDS.​
+
+ 
+Estilos de Arquitectura  asociados ​
+
+al experimento​
+
+Análisis​
+
+(Atributos de calidad que favorece y desfavorece)​
+
+Microservicios con AWS ECS​
+
+Favorece: Escalabilidad, mantenibilidad, despliegue automatizado, independencia de componentes. ​
+Desfavorece: Complejidad en la comunicación entre servicios, posible sobrecarga en la red.​
+
+Mensajería Asíncrona con amazon SQS​
+
+Favorece: Desempeño, escalabilidad, desacoplamiento entre servicios, tolerancia a fallos. ​
+Desfavorece: Latencia adicional en la comunicación, dificultad en la depuración y monitoreo.​
+
+Persistencia de datos con amazon RDS(PostgresSQL)​
+
+Favorece: Consistencia, disponibilidad, respaldo automático, manejo eficiente de transacciones. ​
+Desfavorece: Posible impacto en el rendimiento por concurrencia alta y bloqueo de transacciones.​
+
+
 # Informe de Resultados: Evaluación de Latencia y Desempeño de Registro de Cambio de Inventario en Tiempo Real
 
 ## 1. Resumen Ejecutivo
