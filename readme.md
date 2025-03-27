@@ -32,6 +32,16 @@ Las reuniones de trabajo establecidas son:
 * [**Semana 7**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-7)
 * [**Semana 8**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-8)
 
+# Entregables Proyecto Final II
+* 📅 [**Semana 1**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-1-Proyecto-Final-II)
+* 📅 **Semana 2**
+* 📅 **Semana 3**
+* 📅 **Semana 4**
+* 📅 **Semana 5**
+* 📅 **Semana 6**
+* 📅 **Semana 7**
+* 📅 **Semana 8**
+
 ## Levantar el proyecto
 Para levantar el proyecto se debe clonar el repositorio y ejecutar el siguiente comando en la carpeta raíz del proyecto:
 
