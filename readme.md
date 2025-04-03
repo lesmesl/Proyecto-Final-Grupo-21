@@ -34,7 +34,7 @@ Las reuniones de trabajo establecidas son:
 
 # Entregables Proyecto Final II
 * 📅 [**Semana 1**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-1-Proyecto-Final-II)
-* 📅 **Semana 2**
+* 📅 [**Semana 2**](https://github.com/lesmesl/Proyecto-Final-Grupo-21/wiki/Semana-2-Proyecto-Final-II)
 * 📅 **Semana 3**
 * 📅 **Semana 4**
 * 📅 **Semana 5**
